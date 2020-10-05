@@ -1,0 +1,10 @@
+<h1><%=  @story.madlib.title %></h1>
+
+<p><%= @story.create_story %></p>
+
+<a href="/stories/<%=@story.id%>/edit">Edit Story</a>
+
+<form method="POST" action="/stories/<%=@story.id%>/delete">
+    <input type="hidden" id="hidden" name="_method" value="DELETE">
+	<input type="submit" value="Delete Story">
+</form>

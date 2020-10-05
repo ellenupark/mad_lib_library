@@ -1,0 +1,7 @@
+<h1>Here are all your Completed Mad Libs!</h1>
+
+<ul>
+    <% @stories.each do | story | %>
+        <a href="/stories/<%= story.id %>"><li><%= story.madlib.title %></li></a><br>
+    <% end %>
+</ul>

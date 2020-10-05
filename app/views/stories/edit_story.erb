@@ -1,0 +1,12 @@
+<h1>Edit your Story!</h1>
+
+<form method="POST" action="/stories/<%=@story.id%>" >
+    <input id="hidden" type="hidden" name="_method" value="PATCH">
+
+    <% @story.madlib.inputs.each_with_index do | word, i | %>
+        <label for="<%= word %>"><%= word.capitalize %>: </label>
+        <input type="text" name="<%= i %>" placeholder="<%= @story.input_as_array[i] %>"><br>
+    <% end %>
+
+    <input type="submit" name="submit" value="Confirm Changes">
+</form>

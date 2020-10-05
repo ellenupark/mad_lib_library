@@ -1,0 +1,11 @@
+<h1> Welcome <%= @user.first_name %>! Here are your Completed Mad Libs!</h1>
+
+<ul>
+    <% @user.stories.each do | story | %>
+        <li>
+            <%= story.madlib.title %>
+        </li>
+    <% end %>
+</ul>
+
+<a href="/logout">Log Out</a>

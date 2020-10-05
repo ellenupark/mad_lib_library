@@ -1,0 +1,15 @@
+<h1>Welcome to the Mad Libs Library!</h1>
+
+<nav>
+  <% if logged_in? %>
+
+    <a href="/stories/new_story"> Create Mad Lib </a>
+    <a href="/logout"> Log Out </a>
+    <p>Welcome, <%=current_user.username %></p>
+
+  <% else %>
+    <a href="/signup">Sign Up</a>
+    <a href="/login"> Sign In </a>
+  <%end %>
+
+</nav>
