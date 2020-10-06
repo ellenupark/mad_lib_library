@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
     
     validates :first_name, :last_name, :username, :password, presence: true
     validates :username, uniqueness: true
-
+    
+    #lowercase, no leading or trailing whitespace, replace spaces with hyphens
     def slug
         username.downcase.gsub(" ","-")
     end

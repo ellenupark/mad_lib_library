@@ -1,4 +1,6 @@
 require './config/environment'
+require 'sinatra/base'
+require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -8,6 +10,8 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :sessions, true
     set :session_secret, "secret"
+    register Sinatra::Flash
+
   end
 
   get "/" do
@@ -34,6 +38,12 @@ class ApplicationController < Sinatra::Base
       if logged_in?
         redirect "/madlibs"
       end
+    end
+
+     # set flash key/value and redirect to route
+    def redirect_to(route, type, message)
+      flash[type] = message
+      redirect route
     end
     
   end

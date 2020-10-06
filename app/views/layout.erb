@@ -14,7 +14,19 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+
+    <% if logged_in? %>
+      <div class="topnav">
+        <a class="active" href="#home">Home</a>
+        <a href="/madlibs">Mad Libs</a>
+        <a href="/users/<%= current_user.username %>">Profile</a>
+        <a href="/logout">Sign Out</a>
+      </div>
+    <% end %>
+
     <div class="wrapper">
+
+      <center><%= styled_flash %></center>
 
         <%= yield %>
 

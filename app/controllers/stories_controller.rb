@@ -1,13 +1,16 @@
 class StoriesController < ApplicationController
+  
+  # READ -- index route for all completed mad libs (stories)
   get '/stories' do
     if logged_in?
       @stories = Story.all.where(user_id: current_user.id)
       erb :'stories/stories'
     else
-      redirect to '/login'
+      redirect_to("/login", :error, "You must be logged in to view mad libs")
     end
   end
-    
+
+  # CREATE -- render form to create new story
   get '/stories/:id/new' do
     redirect_if_not_logged_in
 
@@ -23,27 +26,29 @@ class StoriesController < ApplicationController
 
   end
     
+  # CREATE -- post route to create new story
   post '/stories' do
     redirect_if_not_logged_in
 
     if params.values.include?("")
       session[:success_message] = "Input Missing"
 
-      redirect to "/madlibs/#{params[:madlib_id]}/new"
+      redirect to "/stories/#{session[:madlib_id]}/new"
     else
       @story = Story.create_from_session_and_params(session, params)
-        
+
       @story.user_id = current_user.id
       if @story.save
         session[:success_message] = "Successfully created song."
         redirect to "/stories/#{@story.id}"
       else
-        redirect to "/madlibs/#{params[:madlib_id]}/new"
+        redirect to "/stories/#{params[:madlib_id]}/new"
       end
     end
   end
     
   get '/stories/:id' do
+
     redirect_if_not_logged_in
     @story = Story.find_by_id(params[:id])
 

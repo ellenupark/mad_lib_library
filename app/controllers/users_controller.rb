@@ -11,14 +11,25 @@ class UsersController < ApplicationController
   end
     
   post '/signup' do
-    if params[:first_name] == "" || params[:last_name] == "" || params[:username] == "" || params[:password] == ""
-      redirect to '/signup'
-    else
-      @user = User.new(params)
+    @user = User.new(params)
+    if @user.valid?
       @user.save
       session[:user_id] = @user.id
       redirect to '/madlibs'
+    else
+      flash[:errors] = @user.errors.full_messages
+      redirect to '/signup'
     end
+
+
+    # if params[:first_name] == "" || params[:last_name] == "" || params[:username] == "" || params[:password] == ""
+    #   redirect to '/signup'
+    # else
+    #   @user = User.new(params)
+    #   @user.save
+    #   session[:user_id] = @user.id
+    #   redirect to '/madlibs'
+    # end
   end
     
   get '/login' do
