@@ -1,12 +1,7 @@
-<h1>Welcome <%= current_user.first_name %>!</h1>
-
-<h3>Featured Mad Libs</h3>
+<h1 class="title is-1">Featured Mad Libs</h3>
 
 <ul>
     <% @madlibs.each do | madlib | %>
-        <a href="/stories/<%= madlib.id %>/new"><li><%= madlib.title %></li></a><br>
+        <a href="/stories/<%= madlib.slug %>/new"><li><%= madlib.title %></li></a><br>
     <% end %>
 </ul>
-
-
-<a href="/stories">View your Completed Mad Libs</a>

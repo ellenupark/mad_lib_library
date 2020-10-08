@@ -1,32 +1,16 @@
 @media screen {
-  /* Add a black background color to the top navigation */
-.topnav {
-  background-color: #333;
-  overflow: hidden;
-}
+  .navbar-menu {
+    background-color: #F5CAC3;
+  }
 
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
+  #delete {
+    margin-top: auto;
+    text-align: right;
+  }
 
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-/* Add a color to the active/current link */
-.topnav a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
+  #sign-up-button {
+    background-color: #F28482;
+  }
 
   /* --- Reset Styles --- */
   * {
@@ -42,7 +26,7 @@
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: pink;
+    background-color: #84A59D;
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
@@ -122,6 +106,41 @@
     margin-top: 2px;
     margin-bottom: 2px;
 
+  }
+
+  /* Flash Message Styling */
+
+   /* add style to flash */
+  .flash {
+    width: 600px;
+    padding: 5px;
+    font-weight: bold;
+    margin: 20px;
+    background:#ddd;
+    color:#666;border:1px solid #ccc;
+    text-align: center;
+    align-content: center;
+  }
+
+  .info {
+    background:#D9EDF7;
+    color:#3A87AD;
+    border:1px solid #BCE8F1;
+  }
+  .warning {
+    background:#FCF8E3;
+    color:#C09853;
+    border:1px solid #FBEED5;
+  }
+  .success {
+    background:#DFF0D8;
+    color:#468847;
+    border:1px solid #D6E9C6;
+  }
+  .error {
+    background:#F2DEDE;
+    color:#B94A48;
+    border:1px solid #EED3D7;
   }
 
 }

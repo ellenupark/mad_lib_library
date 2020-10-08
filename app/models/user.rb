@@ -4,12 +4,12 @@ class User < ActiveRecord::Base
 
     has_secure_password
     
-    validates :first_name, :last_name, :username, :password, presence: true
-    validates :username, uniqueness: true
+    validates :first_name, :last_name, :username, presence: true
+    validates :username, uniqueness: { case_sensitive: false }
     
     #lowercase, no leading or trailing whitespace, replace spaces with hyphens
     def slug
-        username.downcase.gsub(" ","-")
+        username.strip.downcase.gsub(" ","-")
     end
     
     def self.find_by_slug(slug)

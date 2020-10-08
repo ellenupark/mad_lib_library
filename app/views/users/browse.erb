@@ -1,0 +1,13 @@
+<h1 class="title is-1">Browse Community Mad Libs!</h1>
+
+<ul>
+    <% @users.each do | user | %>
+        <% if !user.stories.empty? %>
+            <p>Created by <%= user.username %></p>
+            <% user.stories.each do | story | %>
+                <a href="/stories/<%= story.id %>"><li><%= story.madlib.title %></li></a>
+                <p><%= story.created_at.strftime("Created on %m/%d/%Y at %I:%M%p")  %></p><br>
+            <% end %>
+        <% end %>
+    <% end %>
+</ul>

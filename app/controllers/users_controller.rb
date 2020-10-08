@@ -1,56 +1,124 @@
 class UsersController < ApplicationController
-
-  get '/users/:slug' do
-    @user = User.find_by_slug(params[:slug])
-    erb :'users/show_user'
-  end
     
+  # NEW -- render signup form (GET: /users/new)
   get '/signup' do
     redirect_if_logged_in
-    erb :'users/new_user'
+    erb :'users/new'
   end
-    
-  post '/signup' do
-    @user = User.new(params)
-    if @user.valid?
-      @user.save
-      session[:user_id] = @user.id
-      redirect to '/madlibs'
+
+  # CREATE -- accept sign up params and create a user
+  post "/users" do
+    find_user_by_username
+
+    if @user
+      redirect_to("/signup", :warning, "User already exists, <a href='/login'>Log in?</a>")
     else
-      flash[:errors] = @user.errors.full_messages
-      redirect to '/signup'
+      @user = User.new(params[:user])
+      if @user.save
+        session[:user_id] = @user.id
+        redirect_to("/users/#{@user.slug}", :success, "Successfully signed up!")
+      else
+        redirect_to("/signup", :error, "Signup failure: #{@user.errors.full_messages.to_sentence}")
+      end
     end
-
-
-    # if params[:first_name] == "" || params[:last_name] == "" || params[:username] == "" || params[:password] == ""
-    #   redirect to '/signup'
-    # else
-    #   @user = User.new(params)
-    #   @user.save
-    #   session[:user_id] = @user.id
-    #   redirect to '/madlibs'
-    # end
   end
     
+  # render login form
   get '/login' do
     redirect_if_logged_in
     erb :'users/login'
   end
     
+  # recieve the params from login form
   post '/login' do
-    user = User.find_by(username: params[:username])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect to "/madlibs"
-    else
-      redirect to '/signup'
+    @user = User.find_by(username: params[:username])
+
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect_to("/madlibs", :info, "Welcome #{@user.first_name}!")
+    elsif !@user
+     redirect_to("/login", :error, "Incorrect email address...<a href='/signup'>Sign Up?</a>")
+    else @user && !@user.authenticate(params[:password])
+     redirect_to("/login", :error, "Incorrect password")
     end
   end
     
+  # logs out user by clearing session hash
   get '/logout' do
-    redirect_if_not_logged_in
-
     session.clear
-    redirect to '/login'
+    redirect_to("/", :info, "You are logged out!")
+  end
+
+  # SHOW -- show route for all users completed mad libs
+  get '/users/browse' do
+    @users = User.all
+    erb :'users/browse'
+  end
+
+  # SHOW -- show route for user's profile page
+  get '/users/:slug' do
+    find_user_by_slug
+    erb :'users/show'
+  end
+
+  # UPDATE -- render form for user to edit their profile
+  get "/users/:slug/edit" do
+    if logged_in?
+      find_user_by_slug
+      if @user == current_user
+        erb :"/users/edit"
+      else
+        redirect_to("/", :error, "Not yours to edit!")
+      end
+    else
+      redirect_to("/", :error, "Must be logged in to access!")
+    end
+  end
+  
+  patch "/users/:slug/cancel" do
+    find_user_by_slug
+    redirect to "/users/#{@user.slug}"
+  end
+
+  # UPDATE -- patch route to update existing user profile
+  patch "/users/:slug" do
+    redirect_if_not_logged_in("/", :error, "Must be logged in to edit profile.")
+
+    find_user_by_slug
+    if @user == current_user
+      # if successfully update display_name and email, check for new_password
+      if @user.update(first_name: params[:user][:first_name], last_name: params[:user][:last_name], username: params[:user][:username])
+        # only update password if params[:new_password] is not blank
+        if !params[:user][:new_password].blank?
+          @user.update(password: params[:user][:new_password])
+        end
+        redirect_to("/users/#{@user.slug}", :success, "Profile successfully updated!")
+      else
+        redirect_to("/users/#{current_user.slug}/edit", :error, "Edit failure: #{@user.errors.full_messages.to_sentence}")
+      end
+    else
+      redirect_to("/", :error, "Not yours to edit!")
+    end
+  end
+
+  # DESTROY -- delete route to delete an existing user profile
+  delete '/users/:slug/delete' do
+    find_user_by_slug
+    if logged_in? && @user == current_user
+      @user.destroy
+      redirect_to("/", :success, "Your profile has been deleted.")
+    else
+      redirect_to("/", :error, "Cannot delete profile that is not yours.")
+    end
+  end
+
+  helpers do
+    def find_user_by_slug
+      @user = User.find_by_slug(params[:slug])
+    end
+
+    def find_user_by_username
+      @user = User.find_by(username: params[:user][:username])
+    end
   end
 end

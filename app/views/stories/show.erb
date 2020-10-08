@@ -1,0 +1,16 @@
+<h1 class="subtitle is-3"><%=  @story.madlib.title %></h1>
+
+<p><%= @story.create_story %></p>
+
+<% if @story.user == current_user %>
+    <a href="/stories/<%=@story.id%>/edit">Edit Story</a>
+
+    <form method="POST" action="/stories/<%=@story.id%>/delete">
+        <input type="hidden" id="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete Story">
+    </form>
+<% else %>
+    <p>Created by <%= @story.user.username %></p>
+<% end %>
+
+<button onclick="window.location.href = '<%= request.referer %>';">Back</button>
