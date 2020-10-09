@@ -7,14 +7,14 @@ A web application designed for users to complete and share mad lib stories.
 
 ## Installation & Setup
 
-* Clone the Mad Lib Library repo onto your computer
-  * Go to 'https://github.com/ellenupark/madlibs_library'
-  * Click on the green **Clone or download** button
-  * Click on **HTTPS** if not already selected
-  * Click the **clipboard icon**
-  * In your terminal, type `git clone` and then paste the copied URL.
-* Type `cd madlibs_library` to change the current working directory
-* Run `bundle install` to load the Ruby gems and dependencies
+* Clone the Mad Lib Library repository onto your computer.
+  * Navigate to 'https://github.com/ellenupark/madlibs_library'.
+  * Click on the green **Clone** button.
+  * Click on **HTTPS** if not already selected.
+  * Click the **clipboard icon** to copy the URL.
+  * In your terminal, type `git clone` then paste the copied URL.
+* Type `cd madlibs_library` to change the current working directory.
+* Run `bundle install` to load the Ruby gems and dependencies.
 
 ## Usage
 
