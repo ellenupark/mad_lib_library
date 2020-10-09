@@ -14,7 +14,9 @@ class UsersController < ApplicationController
       redirect_to("/signup", :warning, "User already exists, <a href='/login'>Log in?</a>")
     else
       @user = User.new(params[:user])
-      if @user.save
+      if params[:user][:username].include?(" ")
+        redirect_to("/signup", :error, "Signup failure: Username cannot include spaces.")
+      elsif @user.save
         session[:user_id] = @user.id
         redirect_to("/users/#{@user.slug}", :success, "Successfully signed up!")
       else
@@ -86,8 +88,10 @@ class UsersController < ApplicationController
 
     find_user_by_slug
     if @user == current_user
-      # if successfully update display_name and email, check for new_password
-      if @user.update(first_name: params[:user][:first_name], last_name: params[:user][:last_name], username: params[:user][:username])
+      if params[:user][:username].include?(" ")
+        redirect_to("/users/#{@user.slug}/edit", :error, "Edit failure: Username cannot include spaces.")
+      # if successfully updates, check for new_password
+      elsif @user.update(first_name: params[:user][:first_name], last_name: params[:user][:last_name], username: params[:user][:username])
         # only update password if params[:new_password] is not blank
         if !params[:user][:new_password].blank?
           @user.update(password: params[:user][:new_password])
@@ -101,10 +105,21 @@ class UsersController < ApplicationController
     end
   end
 
+  # DESTROY -- renders delete account form
+  get '/users/:slug/delete' do
+    find_user_by_slug
+    if logged_in? && @user == current_user
+      erb :"/users/delete"
+    else
+      redirect_to("/", :error, "Cannot delete profile that is not yours.")
+    end
+  end
+
   # DESTROY -- delete route to delete an existing user profile
   delete '/users/:slug/delete' do
     find_user_by_slug
     if logged_in? && @user == current_user
+      @user.stories.destroy_all
       @user.destroy
       redirect_to("/", :success, "Your profile has been deleted.")
     else

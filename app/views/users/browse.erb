@@ -1,13 +1,17 @@
-<h1 class="title is-1">Browse Community Mad Libs!</h1>
+<div class="browse-center">
+    <h1 class="title is-1">Browse Community Mad Libs!</h1>
 
-<ul>
     <% @users.each do | user | %>
-        <% if !user.stories.empty? %>
-            <p>Created by <%= user.username %></p>
+        <% if !user.stories.empty? && user != current_user %>
+            <p class="subtitle is-4">Created by <%= user.username.capitalize %></p>
             <% user.stories.each do | story | %>
-                <a href="/stories/<%= story.id %>"><li><%= story.madlib.title %></li></a>
-                <p><%= story.created_at.strftime("Created on %m/%d/%Y at %I:%M%p")  %></p><br>
+                <div class="list-story">
+                    <p id="title"><%= story.madlib.title %></p>
+                    <p class="created-at"><%= story.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("Created on %m/%d/%Y at %I:%M%p")  %></p>
+                    <a class="button is-light is-small" href="/stories/<%= story.id %>">View Story</a>
+                </div>
             <% end %>
         <% end %>
     <% end %>
-</ul>
+
+</div>

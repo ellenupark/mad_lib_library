@@ -1,16 +1,134 @@
 @media screen {
+
+  /* Navigation Menu */
+
   .navbar-menu {
-    background-color: #F5CAC3;
+    background-color: #000000;
+  }
+  
+  .navbar-item {
+    font-weight: bold;
   }
 
-  #delete {
-    margin-top: auto;
-    text-align: right;
+  .navbar-item:hover {
+    color: #9D9D9D !important;
+    transition: 0.2s;
   }
 
-  #sign-up-button {
-    background-color: #F28482;
+  /* --- Header --- */
+
+  #header {
+    height: 105vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../images/pexels-photo-1106468.jpeg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
   }
+
+  .user-box {
+    padding-top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+  .user-box img {
+    width: 400px;
+  }
+
+  /* --- Columns --- */
+
+  .columns {
+    position: relative;
+    padding: 50px 20px 50px 20px;
+    display: table;
+    background-color: #F7EDE2;
+
+  }
+
+  .column {
+    text-align: center;
+    padding: 0px 20px 50px 20px;
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+
+  .column .column-content {
+    padding: 30px 60px 50px 60px;
+    text-align: center;
+  }
+
+  /* --- Forms --- */
+
+  .form-login {
+    height: 100%;
+    padding: 170px 350px 150px 350px;
+    background-color: #F7EDE2;
+  }
+
+  .form-login h1 {
+    text-align: center;
+  }
+
+  .form-signup {
+    height: 100%;
+    padding: 100px 350px 50px 350px;
+    background-color: #F7EDE2;
+  }
+
+  .form-signup h1 {
+    text-align: center;
+  }
+  
+  .form-madlib {
+    height: 100%;
+    padding: 100px 200px 50px 200px;
+  }
+
+  .outer {
+    display: flex;
+  }
+
+  .outer-center {
+    justify-content: center;
+  }
+
+  .outer .inner-button {
+    margin: 20px 20px 0px 0px;
+  }
+
+  /* --- Index Page --- */
+  .center-img img {
+    height: 300px;
+  }
+
+  /* --- Browse Page --- */
+  
+  .browse-center {
+    padding: 100px 30px 30px 30px;
+    background-color: #F7EDE2;
+    min-height: 600px;
+  }
+
+  .browse-center h1 {
+    padding-bottom: 10px;
+  }
+
+  /* --- Profile --- */
+
+  .fit-page {
+    padding: 100px 0px 100px 0px;
+    min-height: 600px;
+  }
+
+  /* --- View Story Page --- */
+
+  .fit-story-page {
+    padding: 200px 30px 150px 30px;
+    min-height: 600px;
+  }
+
 
   /* --- Reset Styles --- */
   * {
@@ -22,26 +140,32 @@
   html, body {
     height: 100%;
     width: 100%;
+
   }
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: #84A59D;
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
+    display: block;
+
   }
 
   .wrapper {
-    background: #fff;
+    background-color: #F7EDE2;
+    margin: 0 auto;
+  }
+
+  /* .wrapper {
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
     box-shadow: 0 0 10px rgba(0,0,0,.3);
     margin: 16px auto;
     max-width: 960px;
-    padding: 2.25%; /* 18px / 800px */
+    padding: 2.25%; 
     width: 85%;
-  }
+  } */
 
   h1 {
     font-size: 36px;
@@ -62,6 +186,35 @@
 
   p {
     margin-bottom: 18px;
+  }
+
+  .created-at {
+    font-size: x-small;
+  }
+
+  .created-by {
+    font-size: small;
+  }
+
+  .list-story {
+    padding-bottom: 20px;
+    padding-left: 20px;
+  }
+
+  .list-story #title {
+    font-weight: bold;
+  }
+
+  .list-story a {
+    margin-top: 5px;
+  }
+
+  #delete-profile {
+    margin-top: 30px;
+  }
+
+  .center-page {
+    text-align: center;
   }
 
   .main {
@@ -85,41 +238,44 @@
     font-size: 14px;
   }
 
+  label, input {
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+
+  /* --- Footer --- */
+
+  footer {
+    background: black ;
+  }
+
   .branding {
     clear: both;
   }
 
   footer.branding {
-    border-top: 2px solid #ccc;
-    margin-top: 20px;
-    padding-top: 20px;
+    padding: 40px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
   }
 
-  .success-message {
-    border: 1px solid red;
-    display: inline-block;
-    padding: 5px;
-    margin: 5px;
-  }
+  /* --- Flash Message Styling --- */
 
-  label, input {
-    margin-top: 2px;
-    margin-bottom: 2px;
-
-  }
-
-  /* Flash Message Styling */
-
-   /* add style to flash */
   .flash {
+    margin-top: 5px;
+    z-index: 30;
     width: 600px;
     padding: 5px;
     font-weight: bold;
-    margin: 20px;
     background:#ddd;
-    color:#666;border:1px solid #ccc;
+    color:#666;
+    border:1px solid #ccc;
     text-align: center;
     align-content: center;
+    position: fixed;
+    font-size: 13px;
+    left: 27%;
   }
 
   .info {
@@ -141,6 +297,114 @@
     background:#F2DEDE;
     color:#B94A48;
     border:1px solid #EED3D7;
+  }
+
+  /* ------------------------ANIMATION-------------------------- */
+
+.animated {
+  -webkit-animation-duration: 2.5s;
+  -moz-animation-duration: 2.5s;
+  -o-animation-duration: 2.5s;
+  animation-duration: 2.5s;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; 
+  }
+
+  100% {
+    opacity: 1; 
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+} 
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  } 
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  -moz-animation-name: fadeIn;
+  -o-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+/* --- Animation --- */
+@-webkit-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  -moz-animation-name: fadeInUp;
+  -o-animation-name: fadeInUp;
+  animation-name: fadeInUp;
   }
 
 }

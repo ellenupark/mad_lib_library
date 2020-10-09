@@ -6,8 +6,9 @@ class Story < ActiveRecord::Base
     def self.create_from_session_and_params(session, params)
         madlib = Madlib.all.find_by_id(session[:madlib_id])
 
-        new_story = Story.create(sentence: madlib.sentence)
-        new_story.madlib_id = madlib.id
+        # new_story = Story.create(sentence: madlib.sentence)
+        new_story = Story.create(madlib_id: madlib.id)
+        # new_story.madlib_id = madlib.id
         new_story.input = new_story.convert_param_into_input_string(params)
         new_story
     end

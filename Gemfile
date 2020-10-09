@@ -12,7 +12,7 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem 'sinatra-flash'
-# gem 'bootstrap', '~> 4.5.2'
+gem 'env', '~> 0.3.0'
 
 group :test do
   gem 'rspec'

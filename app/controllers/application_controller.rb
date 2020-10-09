@@ -9,14 +9,13 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :sessions, true
-    set :session_secret, "secret"
+    set :session_secret, ENV["SECRET"]
     register Sinatra::Flash
 
   end
 
   # root route - welcome/home page
   get "/" do
-    redirect_if_logged_in
     erb :index
   end
 

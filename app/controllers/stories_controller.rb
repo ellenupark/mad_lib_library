@@ -15,21 +15,23 @@ class StoriesController < ApplicationController
     redirect_if_not_logged_in("/madlibs", :error, "Must be logged in to complete mad libs. <a href='/login'>Log in?</a>")
     @madlib = Madlib.find_by_slug(params[:slug])
     session[:madlib_id] = @madlib.id
-    session[:sentence] = @madlib.sentence
+    # session[:sentence] = @madlib.sentence
 
     erb :'stories/new'
 
+  end
+
+  post "/madlibs/cancel" do
+    redirect to "/madlibs"
   end
     
   # CREATE -- post route to create new story
   post '/stories' do
     redirect_if_not_logged_in("/", :error, "Must be logged in to create a new recipe")
-    binding.pry
-
     if params[:blanks].values.any?{ | value | value[/\s+/] == value || value == "" }
-      redirect_to("/stories/#{session[:madlib_id]}/new", :error, "Input Missing")
+      redirect_to("/stories/#{Madlib.find_by_id(session[:madlib_id]).slug}/new", :error, "Input Missing")
     elsif params[:blanks].values.any?{ | value | value[/[a-zA-Z0-9 ]*/]  != value }
-      redirect_to("/stories/#{session[:madlib_id]}/new", :error, "Creation failure: Invalid input. Please enter letters or numbers only.")
+      redirect_to("/stories/#{Madlib.find_by_id(session[:madlib_id]).slug}/new", :error, "Creation failure: Invalid input. Please enter letters or numbers only.")
     else
       @story = Story.create_from_session_and_params(session, params)
       @story.user_id = current_user.id
@@ -37,7 +39,7 @@ class StoriesController < ApplicationController
       if @story.save
         redirect_to("/stories/#{@story.id}", :success, "Successfully completed mad lib.")
       else
-        redirect_to("/stories/#{params[:madlib_id]}/new", :error, "Creation failure: #{@story.errors.full_messages.to_sentence}")
+        redirect_to("/stories/#{Madlib.find_by_id(session[:madlib_id]).slug}/new", :error, "Creation failure: #{@story.errors.full_messages.to_sentence}")
       end
     end
   end
@@ -45,7 +47,7 @@ class StoriesController < ApplicationController
   # SHOW -- show route for single recipe (dynamic)
   get '/stories/:id' do
 
-    redirect_if_not_logged_in("/", :error, "Must be logged in to view mad libs.")
+    redirect_if_not_logged_in("/users/browse", :error, "Must be logged in to view mad libs.")
     @story = Story.find_by_id(params[:id])
 
     erb :'stories/show'
@@ -60,12 +62,15 @@ class StoriesController < ApplicationController
         redirect_to("/stories/#{@story.id}", :error, "Edit Failure: This is not your story.")
       end
   end
+
+  patch '/stories/:id/cancel' do
+    redirect "/stories/#{params[:id]}"
+  end
   
   patch '/stories/:id' do
     redirect_if_not_logged_in("/", :error, "Must be logged in to edit mad libs.")
     
     @story = Story.find_by_id(params[:id])
-    binding.pry
     if params[:blanks].values.any?{ | value | value[/\s+/] == value }
       redirect_to("/stories/#{@story.id}/edit", :error, "Update failure: Input field cannot contain whitespace only.")
     elsif params[:blanks].values.any?{ | value | value[/[a-zA-Z0-9 ]*/]  != value }

@@ -1,7 +1,11 @@
-<h1 class="title is-1">Featured Mad Libs</h3>
+<div class="columns fit-page">
+    <div class="column">
+        <h1 class="title is-1">Featured Mad Libs</h1>
 
-<ul>
-    <% @madlibs.each do | madlib | %>
-        <a href="/stories/<%= madlib.slug %>/new"><li><%= madlib.title %></li></a><br>
-    <% end %>
-</ul>
+        <ul>
+            <% @madlibs.each do | madlib | %>
+                <p><a href="/stories/<%= madlib.slug %>/new"><li><%= madlib.title %></li></a><p><br>
+            <% end %>
+        </ul>
+    </div>
+</div>

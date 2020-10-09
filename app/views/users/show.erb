@@ -1,18 +1,13 @@
-<h1 class="title is-1"> Welcome <%= @user.first_name.capitalize %>!</h1>
-
-<div class="columns">
-  <div class="column">
-    <p>Member since <%= @user.created_at.strftime("%B %Y")  %></p><br>
-    <a href="/users/<%= @user.slug %>/edit">Edit Account Details</a><br>
-    <a href="/stories">View Completed Mad Libs</a><br>
-  </div>
-  <div class="column">
-    
-  </div>
-  <div class="column" id="delete">
-    <form method="POST" action="/users/<%=@user.slug %>/delete">
-        <input type="hidden" id="hidden" name="_method" value="DELETE">
-        <input class="button is-light" type="submit" value="Delete Account">
-    </form>
+<div class="fit-page">
+  <div class="columns">
+    <div class="column">
+      <h1 class="title is-1"> Welcome <%= @user.first_name.capitalize %>!</h1>
+      <p>Member since <%= @user.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%B %Y")  %></p><br>
+      <a href="/users/<%= @user.slug %>/edit">Edit Account Details</a><br>
+      <a href="/stories">View Completed Mad Libs</a><br>
+      <br>
+      <a class="button is-link is-light" href="/users/<%= @user.slug %>/delete">Delete Account</a>
+    </div>
   </div>
 </div>
+

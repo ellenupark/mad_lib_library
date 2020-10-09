@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_07_162928) do
+ActiveRecord::Schema.define(version: 2020_10_09_165847) do
 
   create_table "madlibs", force: :cascade do |t|
     t.string "title"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_10_07_162928) do
     t.string "input"
     t.integer "user_id"
     t.integer "madlib_id"
-    t.string "sentence"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

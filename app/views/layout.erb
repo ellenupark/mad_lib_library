@@ -20,23 +20,23 @@
   <body>
 
     <!-- Navigation Bar -->
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-transparent is-fixed-top has-background-light" role="navigation" aria-label="main navigation">
       <div class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="/">
+          <a class="navbar-item has-text-white-ter" href="/">
             Home
           </a>
 
-          <a class="navbar-item" href="/madlibs">
+          <a class="navbar-item has-text-white-ter" href="/madlibs">
             Mad Libs
           </a>
 
-          <a class="navbar-item" href="/users/browse">
+          <a class="navbar-item has-text-white-ter" href="/users/browse">
               Browse
           </a>
 
           <% if logged_in? %>
-          <a class="navbar-item" href="/users/<%= current_user.slug %>">
+          <a class="navbar-item has-text-white-ter" href="/users/<%= current_user.slug %>">
             Profile
           </a>
           <% end %>
@@ -56,7 +56,7 @@
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <a class="button" id="sign-up-button" href="/signup">
+                <a class="button is-primary" href="/signup">
                   <strong>Sign up</strong>
                 </a>
                 <a class="button is-light" href="/login">
@@ -71,20 +71,20 @@
     </nav>
 
     <div class="wrapper">
+      
+      <%= styled_flash %>
+      <%= yield %>
 
-      <center><%= styled_flash %></center>
-
-        <%= yield %>
-
-      <footer class="branding">
-        <small>&copy; 2020 <strong>MadLibLibrary</strong></small>
-      </footer>
     </div>
+
+    <footer class="branding">
+        <small>&copy; 2020 MadLibLibrary</small>
+    </footer>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <!--[if lt IE 7]>
       <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
       <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
     <![endif]-->
-  </body>
+  </body class="has-navbar-fixed-top">
 </html>

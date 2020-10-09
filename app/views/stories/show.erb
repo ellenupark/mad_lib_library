@@ -1,16 +1,23 @@
-<h1 class="subtitle is-3"><%=  @story.madlib.title %></h1>
+<div class="fit-story-page">
+    <h1 class="subtitle is-3"><%=  @story.madlib.title %></h1>
+    <% if @story.user != current_user %>
+        <p class="created-by">Created by <%= @story.user.username.capitalize %></p>
+        <br>
+    <% end %>
 
-<p><%= @story.create_story %></p>
+    <p><%= @story.create_story %></p>
 
-<% if @story.user == current_user %>
-    <a href="/stories/<%=@story.id%>/edit">Edit Story</a>
+    <div class="outer">
+        <% if @story.user == current_user %>
+            <a class="button is-light is-small inner-button" href="/stories/<%=@story.id%>/edit">Edit Story</a>
 
-    <form method="POST" action="/stories/<%=@story.id%>/delete">
-        <input type="hidden" id="hidden" name="_method" value="DELETE">
-        <input type="submit" value="Delete Story">
-    </form>
-<% else %>
-    <p>Created by <%= @story.user.username %></p>
-<% end %>
-
-<button onclick="window.location.href = '<%= request.referer %>';">Back</button>
+            <form method="POST" action="/stories/<%=@story.id%>/delete">
+                <input class="button is-light is-small inner-button" type="hidden" id="hidden" name="_method" value="DELETE">
+                <input class="button is-light is-small inner-button" type="submit" value="Delete Story">
+            </form>
+            <a class="button is-link is-light is-small inner-button" href="/stories">Back</a>
+        <% else %>
+            <a class="button is-link is-light is-small inner-button" href="/users/browse">Back</a>
+        <% end %>
+    </div>
+</div>
