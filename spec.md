@@ -2,16 +2,56 @@
 
 Specs:
 - [x] Use Sinatra to build the app
+    - Used Corneal gem to set up application
+    - ApplicationController inherits from Sinatra::Base
 - [x] Use ActiveRecord for storing information in a database
+    - Utilizing 'activerecord', 'sinatra-activerecord' gems
+    - ActiveRecord connection established in environment.rb file
+    - ActiveRecord used to implement CRUD routes
+    - Connected to SQLite database
 - [x] Include more than one model class (e.g. User, Post, Category)
+    - 3 classes total 
+        - User
+        - Madlib
+        - Story
 - [x] Include at least one has_many relationship on your User model (e.g. User has_many Posts)
+    - 2 has_many relationships
+        - User has_many stories and has_many mad libs through stories
+        - Mad lib has_many stories and has_many users through stories
 - [x] Include at least one belongs_to relationship on another model (e.g. Post belongs_to User)
+    - 1 belongs_to relationship
+        - Story belongs_to users and belongs_to mad libs
 - [x] Include user accounts with unique login attribute (username or email)
+    - Validates that username is unique
+        - validates :username, uniqueness: { case_sensitive: false }
 - [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
+    - CREATING:
+        - get '/stories/:slug/new'
+        - post '/stories'
+    - READING:
+        - get '/stories/:id'
+    - UPDATING:
+        - get '/stories/:id/edit'
+        - patch '/stories/:id'
+    - DESTROYING: 
+        - delete '/stories/:id/delete'
+    - Included CRUD routes for users as well
 - [x] Ensure that users can't modify content created by other users
+    - Implemented IF statement in all update routes, only allows changes if: 
+        - if @user == current_user
 - [x] Include user input validations
+    - In User class
+        - validates :first_name, :last_name, :username, presence: true
+        - validates :username, uniqueness: { case_sensitive: false }
+    - Implemented IF statements in stories controller to check for empty input fields, invalid characters
 - [x] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
+    - Used Sinatra::Flash to include flash error messages in application
 - [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+    - Included information on all below:
+        - Mad Lib Library - Sinatra App (description)
+        - Installation & Setup (install instructions)
+        - Contributing (contributors guide)
+        - License (license for code)
 
 Confirm
 - [x] You have a large number of small Git commits
