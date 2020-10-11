@@ -4,7 +4,7 @@
 
         <ul>
             <% @madlibs.each do | madlib | %>
-                <h5 class="subtitle is-5"><a href="/stories/<%= madlib.slug %>/new"><li><%= madlib.title %></li></a><h5>
+                <a href="/stories/<%= madlib.slug %>/new"><p class="subtitle is-4"><%= madlib.title %></p></a>
                 <p class="created-at">
                     <% count = Madlib.all.select{ | ml | ml.title == madlib.title }.count %>
                     <% if count == 1 %> 
