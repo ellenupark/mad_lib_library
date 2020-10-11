@@ -1,20 +1,16 @@
-<div class="columns fit-page">
-    <div class="column">
-        <div class="column-content">
-            <h1 class="title is-1">Browse Community Mad Libs!</h1><br>
+<div class="page-left">
+    <h1 class="title is-1">Browse Community Mad Libs!</h1><br>
 
-            <% @users.each do | user | %>
-                <% if !user.stories.empty? && user != current_user %>
-                    <p class="subtitle is-4">Created by <%= user.username.capitalize %></p>
-                    <% user.stories.each do | story | %>
-                        <div>
-                            <p id="title"><%= story.madlib.title %></p>
-                            <p class="created-at"><%= story.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("Created on %m/%d/%Y at %I:%M%p")  %></p>
-                            <a class="button is-light is-small btm-pad" href="/stories/<%= story.id %>">View Story</a>
-                        </div>
-                    <% end %>
-                <% end %>
+    <% @users.each do | user | %>
+        <% if !user.stories.empty? && user != current_user %>
+            <p class="subtitle is-4">Created by <%= user.username.capitalize %></p>
+            <% user.stories.each do | story | %>
+                <div class="list-story">
+                    <p id="title"><%= story.madlib.title %></p>
+                    <p class="created-at"><%= story.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("Created on %m/%d/%Y at %I:%M%p")  %></p>
+                    <a class="button is-light is-small btm-pad" href="/stories/<%= story.id %>">View Story</a>
+                </div>
             <% end %>
-        </div>
-    </div>
+        <% end %>
+    <% end %>
 </div>
