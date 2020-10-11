@@ -40,22 +40,21 @@
 
   .columns {
     position: relative;
-    padding: 50px 20px 50px 20px;
+    padding: 50px 20px 100px 20px;
     display: table;
     background-color: #F7EDE2;
-
   }
 
   .column {
     text-align: center;
-    padding: 0px 20px 50px 20px;
+    padding: 0px 20px 0px 20px;
     display: table-cell;
     vertical-align: middle;
+
   }
 
-
   .column .column-content {
-    padding: 30px 60px 50px 60px;
+    padding: 30px 60px 0px 60px;
     text-align: center;
   }
 
@@ -111,13 +110,13 @@
 
   /* --- Browse Page --- */
   
-  .browse-center {
+  .page-left {
     padding: 100px 30px 30px 30px;
     background-color: #F7EDE2;
     min-height: 600px;
   }
 
-  .browse-center h1 {
+  .page-left h1 {
     padding-bottom: 10px;
   }
 
@@ -196,7 +195,7 @@
     padding-left: 20px;
   }
 
-  .list-story #title {
+  #title {
     font-weight: bold;
   }
 

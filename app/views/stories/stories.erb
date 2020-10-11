@@ -1,17 +1,15 @@
-<div class="browse-center">
+<div class="page-left">
     <% if @stories.empty? %>
         <h3 class="subtitle is-3 center-page">You have not completed any mad libs yet. <a href='/madlibs'>Browse mad libs?</a></h1>
     <% else %>
         <h1 class="title is-1">Here are all your Completed Mad Libs!</h1>
 
-        <ul>
             <% @stories.each do | story | %>
                 <div class="list-story">
-                    <p id="title"><li><%= story.madlib.title %></li></p>
+                    <p id="title"><%= story.madlib.title %></p>
                     <p class="created-at"><%= story.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("Created on %m/%d/%Y at %I:%M%p")  %></p>
                     <a class="button is-light is-small" href="/stories/<%= story.id %>">View Story</a>
                 </div>
             <% end %>
-        </ul>
     <% end %>
 </div>
