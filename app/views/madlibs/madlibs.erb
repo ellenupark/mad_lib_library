@@ -4,7 +4,7 @@
 
         <ul>
             <% @madlibs.each do | madlib | %>
-                <p><a href="/stories/<%= madlib.slug %>/new"><li><%= madlib.title %></li></a><p><br>
+                <h5 class="subtitle is-5"><a href="/stories/<%= madlib.slug %>/new"><li><%= madlib.title %></li></a><h5><br>
             <% end %>
         </ul>
     </div>
