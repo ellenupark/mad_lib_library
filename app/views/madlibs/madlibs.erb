@@ -5,13 +5,13 @@
         <div class="list-story">
             <p id="title"><%= madlib.title %></p>
             <p class="created-at">
-                <% count = Madlib.all.select{ | ml | ml.title == madlib.title }.count %>
+                <% count = Story.all.select{ | story | story.madlib.title == madlib.title }.count %>
                 <% if count == 1 %> 
                     Completed by 1 user
                 <% elsif count < 1%> 
                     Be the first to complete!
                 <% else %>
-                    Completed by <%= count %> users.
+                    Completed by <%= count %> users
                 <% end %> 
             </p>
             <a class="button is-light is-small btm-pad" href="/stories/<%= madlib.slug %>/new">View</a>
