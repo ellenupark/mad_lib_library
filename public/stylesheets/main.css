@@ -40,7 +40,7 @@
 
   .columns {
     position: relative;
-    padding: 50px 20px 100px 20px;
+    padding: 100px 20px 100px 20px;
     display: table;
     background-color: #F7EDE2;
   }
@@ -54,7 +54,7 @@
   }
 
   .column .column-content {
-    padding: 30px 60px 0px 60px;
+    padding: 0px 60px 0px 60px;
     text-align: center;
   }
 
@@ -107,7 +107,7 @@
     margin-top: 30px;
     height: 300px;
   }
-  
+
   /* --- Browse Page --- */
   
   .page-left {

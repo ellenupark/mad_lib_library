@@ -1,11 +1,15 @@
-<div class="fit-page center-img">
-    <h3 class="subtitle is-3 center-page">Are you sure you want to delete your account?</h3>
-    <img class="center-page" src="../../images/book.png">
-    <div class="outer outer-center">
-        <form method="POST" action="/users/<%=@user.slug %>/delete">
-            <input type="hidden" id="hidden" name="_method" value="DELETE">
-            <input class="button is-light inner-button" type="submit" value="Confirm">
-        </form>
-        <a class="button is-link inner-button" href="/users/<%= @user.slug %>">Cancel</a>
+<div class="columns">
+    <div class="column">
+        <div class="column-content center-img">
+            <h3 class="subtitle is-3 center-page">Are you sure you want to delete your account?</h3>
+            <img class="center-page" src="../../images/book.png">
+            <div class="outer outer-center">
+                <form method="POST" action="/users/<%=@user.slug %>/delete">
+                    <input type="hidden" id="hidden" name="_method" value="DELETE">
+                    <input class="button is-light inner-button" type="submit" value="Confirm">
+                </form>
+                <a class="button is-link inner-button" href="/users/<%= @user.slug %>">Cancel</a>
+            </div>
+        </div>
     </div>
 </div>
