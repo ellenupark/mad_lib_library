@@ -108,6 +108,11 @@
     height: 300px;
   }
 
+  #round-corner {
+    margin-top: 10px;
+    border-radius: 25px;
+  }
+
   /* --- Browse Page --- */
   
   .page-left {
