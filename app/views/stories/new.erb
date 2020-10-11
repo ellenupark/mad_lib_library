@@ -5,7 +5,7 @@
         <form method="POST" action="/stories" >
             <% @madlib.blanks.each_with_index do | word, i | %>
                 <div class="field">
-                    <label for="<%=x word %>" class="label"><%= word.capitalize %></label>
+                    <label for="<%= word %>" class="label"><%= word.capitalize %></label>
                     <div class="control">
                         <input class="input" name="blanks[<%= i %>]" type="text">
                     </div>
