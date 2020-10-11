@@ -1,29 +1,20 @@
-<div class="columns fit-page">
-    <div class="column">
-        <div class="column-content">
-            <h1 class="title is-1">Featured Mad Libs</h1>
-            
-            <% @madlibs.each do | madlib | %>
-                <a href="/stories/<%= madlib.slug %>/new"><p class="subtitle is-4"><%= madlib.title %></p></a>
-                <p class="created-at">
-                    <% count = Madlib.all.select{ | ml | ml.title == madlib.title }.count %>
-                    <% if count == 1 %> 
-                        Completed by 1 user
-                    <% elsif count < 1%> 
-                        Be the first to complete!
-                    <% else %>
-                        Completed by <%= count %> users.
-                    <% end %> 
-                </p>
-                <button class="button is-small btm-pad" href="/stories/<%= madlib.slug %>/new">View</button>
-            <% end %> 
+<div class="page-left">
+    <h1 class="title is-1">Featured Mad Libs</h1>
+
+    <% @madlibs.each do | madlib | %>
+        <div class="list-story">
+            <p id="title"><%= madlib.title %></p>
+            <p class="created-at">
+                <% count = Madlib.all.select{ | ml | ml.title == madlib.title }.count %>
+                <% if count == 1 %> 
+                    Completed by 1 user
+                <% elsif count < 1%> 
+                    Be the first to complete!
+                <% else %>
+                    Completed by <%= count %> users.
+                <% end %> 
+            </p>
+            <a class="button is-light is-small btm-pad" href="/stories/<%= madlib.slug %>/new">View</a>
         </div>
-    </div>
+    <% end %> 
 </div>
-
-
-
-
-
-
-
