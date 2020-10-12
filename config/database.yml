@@ -11,4 +11,4 @@ production:
   database: sch_database #rename this to whatever you want
   username: username
   password: password
-  host: 127.0.0.1
+  host: localhost
