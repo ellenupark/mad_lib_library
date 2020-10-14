@@ -11,7 +11,7 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem 'sinatra-flash'
-gem 'env', '~> 0.3.0'
+# gem 'env', '~> 0.3.0'
 
 group :test do
   gem 'rspec'
