@@ -30,7 +30,7 @@
       <div>
         <% if logged_in? %>
           <a class="left-nav" href="/users/<%= current_user.slug %>">Profile</a>
-          <a class="button is-primary right-nav" href="/logout">Log out</a>
+          <a class="button is-light right-nav" href="/logout">Log out</a>
         <% else %>
           <a class="button is-light right-nav" href="/login">Log in</a>
           <a class="button is-primary right-nav" href="/signup">Sign up</a>
