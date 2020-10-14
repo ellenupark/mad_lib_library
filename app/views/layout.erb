@@ -39,23 +39,26 @@
       </div>
     </nav>    
 
-    
-    <!-- Top Navigation Menu -->
-  <div class="topnav content-mobile">
-    <a href="#home" class="active">Logo</a>
-    <!-- Navigation links (hidden by default) -->
-    <div id="myLinks">
-      <a href="#news">News</a>
-      <a href="#contact">Contact</a>
-      <a href="#about">About</a>
+    <nav class="content-mobile" role="navigation">
+      <div id="menuToggle">
+        <input type="checkbox" />
+          <span></span>
+          <span></span>
+          <span></span>
+      <ul id="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/madlibs">Mad Libs</a></li>
+        <li><a href="/users/browse">Browse</a></li>
+        <% if logged_in? %>
+          <li><a href="/users/<%= current_user.slug %>">Profile</a></li>
+          <li><a href="/logout">Log out</a></li>
+        <% else %>
+          <li><a href="/login">Log in</a></li>
+          <li><a href="/signup">Sign up</a></li>
+        <% end %>
+      </ul>
     </div>
-  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-    </a>
-  </div>
-
-
+    </nav>
 
     <div class="wrapper">
       
