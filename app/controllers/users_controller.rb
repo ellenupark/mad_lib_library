@@ -39,7 +39,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to("/madlibs", :info, "Welcome #{@user.first_name}!")
     elsif !@user
-     redirect_to("/login", :error, "Incorrect username...<a href='/signup'>Sign Up?</a>")
+     redirect_to("/login", :error, "Incorrect username. <a href='/signup'>Sign Up?</a>")
     else @user && !@user.authenticate(params[:password])
      redirect_to("/login", :error, "Incorrect password")
     end

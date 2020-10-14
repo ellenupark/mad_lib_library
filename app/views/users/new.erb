@@ -1,42 +1,41 @@
-<div class="form-signup">
-	
-	<h1 class="title is-1">Sign up here!</h1>
-
-	<form method="POST" action="/users">
-		<div class="field">
-			<label for="first_name" class="label">First Name</label>
-			<div class="control">
-				<input class="input" type="text" name="user[first_name]" placeholder="Text input">
+<div class="center-form">
+	<div class="center-content">
+		<form method="POST" action="/users">
+			<div class="field">
+				<label for="first_name" class="label">First Name</label>
+				<div class="control">
+					<input class="input" type="text" name="user[first_name]" placeholder="Text input">
+				</div>
 			</div>
-		</div>
 
-		<div class="field">
-			<label for="last_name" class="label">Last Name</label>
-			<div class="control">
-				<input class="input" type="text" name="user[last_name]" placeholder="Text input">
+			<div class="field">
+				<label for="last_name" class="label">Last Name</label>
+				<div class="control">
+					<input class="input" type="text" name="user[last_name]" placeholder="Text input">
+				</div>
 			</div>
-		</div>
 
-		<div class="field">
-			<label for="username" class="label">Username</label>
-			<div class="control has-icons-left">
-				<input class="input" type="text" name="user[username]" placeholder="Text input">
-				<span class="icon is-small is-left">
-					<i class="fas fa-user"></i>
-				</span>
+			<div class="field">
+				<label for="username" class="label">Username</label>
+				<div class="control has-icons-left">
+					<input class="input" type="text" name="user[username]" placeholder="Text input">
+					<span class="icon is-small is-left">
+						<i class="fas fa-user"></i>
+					</span>
+				</div>
 			</div>
-		</div>
 
-		<div class="field">
-			<label for="password" class="label">Password</label>
-			<div class="control has-icons-left">
-				<input class="input" type="password" name="user[password]" placeholder="Password">
-				<span class="icon is-small is-left">
-					<i class="fas fa-lock"></i>
-				</span>
+			<div class="field">
+				<label for="password" class="label">Password</label>
+				<div class="control has-icons-left">
+					<input class="input" type="password" name="user[password]" placeholder="Password">
+					<span class="icon is-small is-left">
+						<i class="fas fa-lock"></i>
+					</span>
+				</div>
 			</div>
-		</div>
 
-		<input class="button is-light" type="submit" name="submit" value="Sign Up">
-	</form>
+			<input class="button is-light" type="submit" name="submit" value="Sign Up">
+		</form>
+	</div>
 </div>

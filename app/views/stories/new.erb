@@ -1,7 +1,9 @@
-<div class="fit-page">
-    <h1 class="title is-1 center-page"><%= @madlib.title %></h1>
+<div class="flex-container">
+    <div class="header">
+        <h1 class="title is-1"><%= @madlib.title %></h1>
+    </div>
 
-    <div class="form-madlib">
+    <section class="content">
         <form method="POST" action="/stories" >
             <% @madlib.blanks.each_with_index do | word, i | %>
                 <div class="field">
@@ -11,9 +13,9 @@
                     </div>
                 </div>
             <% end %>
-        
+            
             <input class="button is-link" type="submit" name="submit" value="Submit">
             <button class="button is-link is-light" type="submit" name="cancel" formaction="/madlibs/cancel">Cancel</button>
         </form>  
-    </div>
+    </section>
 </div>
