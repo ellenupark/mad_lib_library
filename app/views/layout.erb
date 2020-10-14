@@ -20,55 +20,23 @@
   <body>
 
     <!-- Navigation Bar -->
-    <nav class="navbar is-transparent is-fixed-top has-background-light" role="navigation" aria-label="main navigation">
-      <div class="navbar-menu">
-        <div class="navbar-start">
-          <a class="navbar-item has-text-white-ter" href="/">
-            Home
-          </a>
-
-          <a class="navbar-item has-text-white-ter" href="/madlibs">
-            Mad Libs
-          </a>
-
-          <a class="navbar-item has-text-white-ter" href="/users/browse">
-              Browse
-          </a>
-
-          <% if logged_in? %>
-          <a class="navbar-item has-text-white-ter" href="/users/<%= current_user.slug %>">
-            Profile
-          </a>
-          <% end %>
-        </div>
-
-        <% if logged_in? %>
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <a class="button is-light" href="/logout">
-                  Log out
-                </a>
-              </div>
-            </div>
-          </div>
-        <% else %>
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <a class="button is-primary" href="/signup">
-                  <strong>Sign up</strong>
-                </a>
-                <a class="button is-light" href="/login">
-                  Log in
-                </a>
-              </div>
-            </div>
-          </div>
-        <% end %>
-
+    <nav class="topnav">
+      <div>
+        <a class="left-nav" href="/">Home</a>
+        <a class="left-nav" href="/madlibs">Mad Libs</a>
+        <a class="left-nav" href="/users/browse">Browse</a>
       </div>
-    </nav>
+
+      <div>
+        <% if logged_in? %>
+          <a class="left-nav" href="/users/<%= current_user.slug %>">Profile</a>
+          <a class="button is-primary right-nav" href="/logout">Log out</a>
+        <% else %>
+          <a class="button is-light right-nav" href="/login">Log in</a>
+          <a class="button is-primary right-nav" href="/signup">Sign up</a>
+        <% end %>
+      </div>
+    </nav>    
 
     <div class="wrapper">
       
