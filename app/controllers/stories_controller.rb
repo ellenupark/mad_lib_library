@@ -21,13 +21,14 @@ class StoriesController < ApplicationController
 
   end
 
+  # renders cancel form
   post "/madlibs/cancel" do
     redirect to "/madlibs"
   end
     
   # CREATE -- post route to create new story
   post '/stories' do
-    redirect_if_not_logged_in("/", :error, "Must be logged in to create a new recipe")
+    redirect_if_not_logged_in("/", :error, "Must be logged in to view completed mad libs.")
     if params[:blanks].values.any?{ | value | value[/\s+/] == value || value == "" }
       redirect_to("/stories/#{Madlib.find_by_id(session[:madlib_id]).slug}/new", :error, "Input Missing")
     elsif params[:blanks].values.any?{ | value | value[/[a-zA-Z0-9 ]*/]  != value }
