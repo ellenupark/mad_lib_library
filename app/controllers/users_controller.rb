@@ -77,6 +77,7 @@ class UsersController < ApplicationController
     end
   end
   
+  # cancel account deletion
   patch "/users/:slug/cancel" do
     find_user_by_slug
     redirect to "/users/#{@user.slug}"

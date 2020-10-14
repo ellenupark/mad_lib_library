@@ -21,7 +21,7 @@ class StoriesController < ApplicationController
 
   end
 
-  # renders cancel form
+  # cancels mad lib creation
   post "/madlibs/cancel" do
     redirect to "/madlibs"
   end
@@ -45,7 +45,7 @@ class StoriesController < ApplicationController
     end
   end
 
-  # SHOW -- show route for single recipe (dynamic)
+  # SHOW -- show route for story
   get '/stories/:id' do
 
     redirect_if_not_logged_in("/users/browse", :error, "Must be logged in to view mad libs. <a href='/login'>Log in?")
@@ -53,7 +53,8 @@ class StoriesController < ApplicationController
 
     erb :'stories/show'
   end
-  
+
+  # UPDATE -- render form for user to edit their story
   get '/stories/:id/edit' do
     redirect_if_not_logged_in("/", :error, "Must be logged in to edit mad libs. <a href='/login'>Log in?")
     @story = Story.find_by_id(params[:id])
@@ -64,10 +65,12 @@ class StoriesController < ApplicationController
       end
   end
 
+  # cancel account deletion
   patch '/stories/:id/cancel' do
     redirect "/stories/#{params[:id]}"
   end
   
+  # UPDATE -- patch route to update existing story
   patch '/stories/:id' do
     redirect_if_not_logged_in("/", :error, "Must be logged in to edit mad libs. <a href='/login'>Log in?")
     
@@ -88,7 +91,8 @@ class StoriesController < ApplicationController
       end
     end
   end
-  
+
+  # DESTROY -- delete route to delete an existing story
   delete '/stories/:id/delete' do
     redirect_if_not_logged_in("/", :error, "Must be logged in to delete mad libs. <a href='/login'>Log in?")
 
