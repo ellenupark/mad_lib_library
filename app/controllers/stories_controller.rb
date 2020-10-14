@@ -6,7 +6,7 @@ class StoriesController < ApplicationController
       @stories = Story.all.where(user_id: current_user.id)
       erb :'stories/stories'
     else
-      redirect_to("/login", :error, "Must be logged in to view mad libs")
+      redirect_to("/login", :error, "Must be logged in to view mad libs" <a href='/login'>Log in?</a>)
     end
   end
 
@@ -28,7 +28,7 @@ class StoriesController < ApplicationController
     
   # CREATE -- post route to create new story
   post '/stories' do
-    redirect_if_not_logged_in("/", :error, "Must be logged in to view completed mad libs.")
+    redirect_if_not_logged_in("/", :error, "Must be logged in to view completed mad libs.<a href='/login'>Log in?</a>")
     if params[:blanks].values.any?{ | value | value[/\s+/] == value || value == "" }
       redirect_to("/stories/#{Madlib.find_by_id(session[:madlib_id]).slug}/new", :error, "Input Missing")
     elsif params[:blanks].values.any?{ | value | value[/[a-zA-Z0-9 ]*/]  != value }
@@ -48,14 +48,14 @@ class StoriesController < ApplicationController
   # SHOW -- show route for single recipe (dynamic)
   get '/stories/:id' do
 
-    redirect_if_not_logged_in("/users/browse", :error, "Must be logged in to view mad libs.")
+    redirect_if_not_logged_in("/users/browse", :error, "Must be logged in to view mad libs. <a href='/login'>Log in?")
     @story = Story.find_by_id(params[:id])
 
     erb :'stories/show'
   end
   
   get '/stories/:id/edit' do
-    redirect_if_not_logged_in("/", :error, "Must be logged in to edit mad libs.")
+    redirect_if_not_logged_in("/", :error, "Must be logged in to edit mad libs. <a href='/login'>Log in?")
     @story = Story.find_by_id(params[:id])
       if @story && @story.user == current_user
         erb :'stories/edit'
@@ -69,7 +69,7 @@ class StoriesController < ApplicationController
   end
   
   patch '/stories/:id' do
-    redirect_if_not_logged_in("/", :error, "Must be logged in to edit mad libs.")
+    redirect_if_not_logged_in("/", :error, "Must be logged in to edit mad libs. <a href='/login'>Log in?")
     
     @story = Story.find_by_id(params[:id])
     if params[:blanks].values.any?{ | value | value[/\s+/] == value }
@@ -90,7 +90,7 @@ class StoriesController < ApplicationController
   end
   
   delete '/stories/:id/delete' do
-    redirect_if_not_logged_in("/", :error, "Must be logged in to delete mad libs.")
+    redirect_if_not_logged_in("/", :error, "Must be logged in to delete mad libs. <a href='/login'>Log in?")
 
     @story = Story.find_by_id(params[:id])
     if @story && @story.user_id == current_user.id
