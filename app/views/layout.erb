@@ -15,12 +15,13 @@
 
     <link rel="stylesheet" href="/stylesheets/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   </head>
   <body>
 
     <!-- Navigation Bar -->
-    <nav class="topnav">
+    <nav class="topnav content-desktop">
       <div>
         <a class="left-nav" href="/">Home</a>
         <a class="left-nav" href="/madlibs">Mad Libs</a>
@@ -37,6 +38,24 @@
         <% end %>
       </div>
     </nav>    
+
+    
+    <!-- Top Navigation Menu -->
+  <div class="topnav content-mobile">
+    <a href="#home" class="active">Logo</a>
+    <!-- Navigation links (hidden by default) -->
+    <div id="myLinks">
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About</a>
+    </div>
+  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
+
 
     <div class="wrapper">
       
