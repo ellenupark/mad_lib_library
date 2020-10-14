@@ -468,6 +468,11 @@
     display: block;
   }
 
+  .flash {
+    width: 450px;
+    left: 8%;
+  }
+
 
   .content-mobile a {
     text-decoration: none;
