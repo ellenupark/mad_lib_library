@@ -6,7 +6,7 @@ class StoriesController < ApplicationController
       @stories = Story.all.where(user_id: current_user.id)
       erb :'stories/stories'
     else
-      redirect_to("/login", :error, "Must be logged in to view mad libs" <a href='/login'>Log in?</a>)
+      redirect_to("/login", :error, "Must be logged in to view mad libs <a href='/login'>Log in?</a>")
     end
   end
 

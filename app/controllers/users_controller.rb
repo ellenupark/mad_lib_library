@@ -73,7 +73,7 @@ class UsersController < ApplicationController
         redirect_to("/", :error, "Not yours to edit!")
       end
     else
-      redirect_to("/", :error, "Must be logged in to access!")
+      redirect_to("/", :error, "Must be logged in to access. <a href='/login'>Log in?</a>")
     end
   end
   
@@ -85,7 +85,7 @@ class UsersController < ApplicationController
 
   # UPDATE -- patch route to update existing user profile
   patch "/users/:slug" do
-    redirect_if_not_logged_in("/", :error, "Must be logged in to edit profile.")
+    redirect_if_not_logged_in("/", :error, "Must be logged in to edit profile. <a href='/login'>Log in?</a>")
 
     find_user_by_slug
     if @user == current_user

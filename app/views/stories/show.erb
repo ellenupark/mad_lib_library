@@ -9,14 +9,13 @@
 
     <div class="outer">
         <% if @story.user == current_user %>
-            <a class="button is-light is-small inner-button" href="/stories/<%=@story.id%>/edit">Edit Story</a>
+            <a class="button is-light is-small inner-button" href="/stories/<%=@story.id%>/edit">Edit</a>
 
             <form method="POST" action="/stories/<%=@story.id%>/delete">
                 <input class="button is-light is-small inner-button" type="hidden" id="hidden" name="_method" value="DELETE">
-                <input class="button is-light is-small inner-button" type="submit" value="Delete Story">
+                <input class="button is-light is-small inner-button" type="submit" value="Delete">
             </form>
-            <a class="button is-light is-small inner-button" href="/madlibs">Browse Mad Libs</a>
-            <a class="button is-light is-small inner-button" href="/stories">View Completed Mad Libs</a>
+            <a class="button is-light is-small inner-button" href="/stories">View My Mad Libs</a>
         <% else %>
             <a class="button is-link is-light is-small inner-button" href="/users/browse">Back</a>
         <% end %>
