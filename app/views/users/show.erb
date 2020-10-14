@@ -1,13 +1,13 @@
-<div class="fit-page">
-  <div class="columns">
-    <div class="column">
-      <h1 class="title is-1"> Welcome <%= @user.first_name.capitalize %>!</h1>
+<div class="flex-container">
+  <div id="show-user" class="header">
+    <h1 class="title is-1"> Welcome <%= @user.first_name.capitalize %>!</h1>
+  </div>
+  <section class="content center-page">
       <p>Member since <%= @user.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%B %Y")  %></p><br>
       <a href="/users/<%= @user.slug %>/edit">Edit Account Details</a><br>
       <a href="/stories">View Completed Mad Libs</a><br>
       <br>
       <a class="button is-link is-light" href="/users/<%= @user.slug %>/delete">Delete Account</a>
-    </div>
-  </div>
+  </section>
 </div>
 
