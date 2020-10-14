@@ -265,7 +265,9 @@
   /* --- Footer --- */
 
   footer {
-    background: black ;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../images/pexels-photo-267669.jpeg);
+    background-position: center;
+    background-size: cover;
   }
 
   .branding {
@@ -273,7 +275,7 @@
   }
 
   footer.branding {
-    padding: 40px;
+    padding: 70px 60px 60px 60px;
     color: white;
     font-weight: bold;
     text-align: center;
