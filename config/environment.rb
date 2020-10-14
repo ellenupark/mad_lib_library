@@ -11,7 +11,7 @@ configure :development do
 end
 
 configure :production do
-  db = URI.parse(ENV['postgresql-clean-59418'] || 'postgres://localhost/mydb')
+  db = URI.parse(ENV['HEROKU_POSTGRESQL_IVORY_URL'] || 'postgres://localhost/mydb')
 
   ActiveRecord::Base.establish_connection(
     :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
