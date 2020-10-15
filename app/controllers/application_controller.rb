@@ -4,11 +4,13 @@ require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
 
+  # control whether features are enabled or not
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    # turns sessions on
     enable :sessions
-    set :sessions, true
+    # encryption key that will be used to create a session_id
     set :session_secret, "speakerjournalconvictionberrycartshylickinjection"
     register Sinatra::Flash
 

@@ -31,10 +31,11 @@ class UsersController < ApplicationController
     erb :'users/login'
   end
     
-  # recieve the params from login form
+  # receive the params from login form
   post '/login' do
     @user = User.find_by(username: params[:username])
 
+    # use .authenticate method to confirm password is correct
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect_to("/madlibs", :info, "Welcome #{@user.first_name}!")
