@@ -64,7 +64,7 @@ class UsersController < ApplicationController
     erb :'users/show'
   end
 
-  # UPDATE -- render form for user to edit their profile
+  # EDIT -- render form for user to edit their profile
   get "/users/:slug/edit" do
     if logged_in?
       find_user_by_slug
@@ -77,19 +77,17 @@ class UsersController < ApplicationController
       redirect_to("/", :error, "Must be logged in to access. <a href='/login'>Log in?</a>")
     end
   end
-  
-  # cancel account deletion
-  patch "/users/:slug/cancel" do
-    find_user_by_slug
-    redirect to "/users/#{@user.slug}"
-  end
 
   # UPDATE -- patch route to update existing user profile
   patch "/users/:slug" do
     redirect_if_not_logged_in("/", :error, "Must be logged in to edit profile. <a href='/login'>Log in?</a>")
 
     find_user_by_slug
-    if @user == current_user
+    # if cancelled
+    if params.keys.include?("cancel")
+      redirect to "/users/#{@user.slug}"
+    elsif @user == current_user
+      # check if username contains invalid input (spaces)
       if params[:user][:username].include?(" ")
         redirect_to("/users/#{@user.slug}/edit", :error, "Edit failure: Username cannot include spaces.")
       # if successfully updates, check for new_password

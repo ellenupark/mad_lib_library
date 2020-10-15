@@ -70,10 +70,13 @@ class StoriesController < ApplicationController
     redirect_if_not_logged_in("/", :error, "Must be logged in to edit mad libs. <a href='/login'>Log in?")
     
     @story = Story.find_by_id(params[:id])
+    # if cancelled
     if params.keys.include?("cancel")
       redirect "/stories/#{params[:id]}"
+    # if missing inputs
     elsif params[:blanks].values.any?{ | value | value[/\s+/] == value }
       redirect_to("/stories/#{@story.id}/edit", :error, "Update failure: Input field cannot contain whitespace only.")
+    # if invalid input values
     elsif params[:blanks].values.any?{ | value | value[/[a-zA-Z0-9 ]*/]  != value }
       redirect_to("/stories/#{@story.id}/edit", :error, "Edit Failure: Invalid input. Please enter letters or numbers only.")
     else
