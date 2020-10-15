@@ -21,18 +21,16 @@ class StoriesController < ApplicationController
 
   end
 
-  # cancels mad lib creation
-  post "/madlibs/cancel" do
-    redirect to "/madlibs"
-  end
-    
   # CREATE -- post route to create new story
   post '/stories' do
     redirect_if_not_logged_in("/", :error, "Must be logged in to view completed mad libs.<a href='/login'>Log in?</a>")
+    # if cancelled
     if params.keys.include?("cancel")
       redirect to "/madlibs"
+    # if missing inputs
     elsif params[:blanks].values.any?{ | value | value[/\s+/] == value || value == "" }
       redirect_to("/stories/#{Madlib.find_by_id(session[:madlib_id]).slug}/new", :error, "Input Missing")
+    # if invalid input values
     elsif params[:blanks].values.any?{ | value | value[/[a-zA-Z0-9 ]*/]  != value }
       redirect_to("/stories/#{Madlib.find_by_id(session[:madlib_id]).slug}/new", :error, "Creation failure: Invalid input. Please enter letters or numbers only.")
     else
@@ -66,18 +64,15 @@ class StoriesController < ApplicationController
         redirect_to("/stories/#{@story.id}", :error, "Edit Failure: This is not your story.")
       end
   end
-
-  # cancel account deletion
-  patch '/stories/:id/cancel' do
-    redirect "/stories/#{params[:id]}"
-  end
   
   # UPDATE -- patch route to update existing story
   patch '/stories/:id' do
     redirect_if_not_logged_in("/", :error, "Must be logged in to edit mad libs. <a href='/login'>Log in?")
     
     @story = Story.find_by_id(params[:id])
-    if params[:blanks].values.any?{ | value | value[/\s+/] == value }
+    if params.keys.include?("cancel")
+      redirect "/stories/#{params[:id]}"
+    elsif params[:blanks].values.any?{ | value | value[/\s+/] == value }
       redirect_to("/stories/#{@story.id}/edit", :error, "Update failure: Input field cannot contain whitespace only.")
     elsif params[:blanks].values.any?{ | value | value[/[a-zA-Z0-9 ]*/]  != value }
       redirect_to("/stories/#{@story.id}/edit", :error, "Edit Failure: Invalid input. Please enter letters or numbers only.")
