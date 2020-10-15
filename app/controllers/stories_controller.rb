@@ -29,7 +29,9 @@ class StoriesController < ApplicationController
   # CREATE -- post route to create new story
   post '/stories' do
     redirect_if_not_logged_in("/", :error, "Must be logged in to view completed mad libs.<a href='/login'>Log in?</a>")
-    if params[:blanks].values.any?{ | value | value[/\s+/] == value || value == "" }
+    if params.keys.include?("cancel")
+      redirect to "/madlibs"
+    elsif params[:blanks].values.any?{ | value | value[/\s+/] == value || value == "" }
       redirect_to("/stories/#{Madlib.find_by_id(session[:madlib_id]).slug}/new", :error, "Input Missing")
     elsif params[:blanks].values.any?{ | value | value[/[a-zA-Z0-9 ]*/]  != value }
       redirect_to("/stories/#{Madlib.find_by_id(session[:madlib_id]).slug}/new", :error, "Creation failure: Invalid input. Please enter letters or numbers only.")

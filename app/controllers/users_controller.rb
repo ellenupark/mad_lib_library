@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     redirect_to("/", :info, "You are logged out!")
   end
 
-  # SHOW -- show route for all users completed mad libs
+  # INDEX -- index route for all users (GET '/users')
   get '/users/browse' do
     @users = User.all
     erb :'users/browse'

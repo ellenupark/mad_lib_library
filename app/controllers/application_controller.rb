@@ -13,7 +13,6 @@ class ApplicationController < Sinatra::Base
     # encryption key that will be used to create a session_id
     set :session_secret, "speakerjournalconvictionberrycartshylickinjection"
     register Sinatra::Flash
-
   end
 
   # root route - welcome/home page
@@ -48,8 +47,5 @@ class ApplicationController < Sinatra::Base
       flash[type] = message
       redirect route
     end
-    
   end
-
-
 end
