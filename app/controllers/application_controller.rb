@@ -12,6 +12,7 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     # encryption key that will be used to create a session_id
     set :session_secret, "speakerjournalconvictionberrycartshylickinjection"
+    # enable flash messages
     register Sinatra::Flash
   end
 
@@ -27,6 +28,16 @@ class ApplicationController < Sinatra::Base
 
 		def current_user
 			@current_user ||= User.find_by(id: session[:user_id])
+    end
+  end
+
+  private
+    def redirect_if_not_owner
+      if !@story 
+        redirect_to("/stories", :error, "Story does not exist.")
+      elsif @story.user != current_user
+        redirect_to("/stories/#{@story.id}", :error, "This is not your story.")
+      end
     end
     
     def redirect_if_not_logged_in(route, type, message)
@@ -47,5 +58,4 @@ class ApplicationController < Sinatra::Base
       flash[type] = message
       redirect route
     end
-  end
 end

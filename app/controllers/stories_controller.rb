@@ -50,19 +50,21 @@ class StoriesController < ApplicationController
 
     redirect_if_not_logged_in("/users/browse", :error, "Must be logged in to view mad libs. <a href='/login'>Log in?")
     @story = Story.find_by_id(params[:id])
+    if @story
+      erb :'stories/show'
+    else
+      redirect_to("/stories", :error, "Story does not exist.")
+    end
 
-    erb :'stories/show'
+    
   end
 
   # UPDATE -- render form for user to edit their story
   get '/stories/:id/edit' do
     redirect_if_not_logged_in("/", :error, "Must be logged in to edit mad libs. <a href='/login'>Log in?")
     @story = Story.find_by_id(params[:id])
-      if @story && @story.user == current_user
-        erb :'stories/edit'
-      else
-        redirect_to("/stories/#{@story.id}", :error, "Edit Failure: This is not your story.")
-      end
+    redirect_if_not_owner
+    erb :'stories/edit'
   end
   
   # UPDATE -- patch route to update existing story
