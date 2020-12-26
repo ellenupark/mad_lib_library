@@ -1,14 +1,12 @@
 development:
   adapter: sqlite3
   database: database.db
-  pool: 40
-  timeout: 5000
+  pool: 30
 
 test:
   adapter: sqlite3
   database: database.db
-  pool: 40
-  timeout: 5000
+  pool: 30
 
 production:
   adapter: postgresql
@@ -16,8 +14,7 @@ production:
   username: username
   password: password
   host: localhost
-  pool: 40
-  timeout: 5000
+  pool: 30
 
 
   
