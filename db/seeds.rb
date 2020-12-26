@@ -18,6 +18,6 @@ Story.create(input: "puzzle-sticky-Kim Kardashian-32-87-government-drizzle-quart
 Story.create(input: "ferocious-savagely-banana-happily-spicy-Madagascar-gorilla-nose-radioactive-potato-cold-1-slyly-sly-turnip-", user_id: User.find_by(username: "adriana").id, madlib_id: Madlib.find_by(title: "Restroom Reception Recon").id)
 Story.create(input: "lumpy-Korean-Brad Pitt-horse-cool-pan-slimy-cold-snakes-shoe-43-squares-cupcake-bread-3-", user_id: User.find_by(username: "natalie").id, madlib_id: Madlib.find_by(title: "Pizza Pizza").id)
 Story.create(input: "bold-timid-cats-toilets-smooth-backpack-cactus-dogs-soft-Steve Carell-green-house-evil-bird-jackets-birds-itchy-plump-purple-", user_id: User.find_by(username: "paula").id, madlib_id: Madlib.find_by(title: "Political Speech").id)
-Story.create(input: "soda-slippery-76-scary-duck-itchy-purple-hamburger-loud-blue-toe-stove-cool-crawl-apples-library-jog-", user_id: User.find_by(username: "ellen".id, madlib_id: Madlib.find_by(title: "The Best Beer Choice").id)
+Story.create(input: "soda-slippery-76-scary-duck-itchy-purple-hamburger-loud-blue-toe-stove-cool-crawl-apples-library-jog-", user_id: User.find_by(username: "ellen".id), madlib_id: Madlib.find_by(title: "The Best Beer Choice").id)
 
 
