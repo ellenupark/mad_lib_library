@@ -58,7 +58,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
-}
+  }
 
   .user-box img {
     width: 400px;
@@ -272,7 +272,7 @@
 
   .content {
     float: left;
-    width: 60%; /* 480px / 800px */
+    width: 35%; /* 480px / 800px */
   }
 
   .sidebar {

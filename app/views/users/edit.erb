@@ -1,9 +1,6 @@
 <div class="flex-container">
-    <div class="header">
+    <div class="center-content">
         <h1 class="title is-1">Edit Profile Details</h1>
-    </div>
-
-    <section class="content">
         <form method="POST" action="/users/<%= @user.slug %>">
             <input id="hidden" type="hidden" name="_method" value="PATCH">
             <div class="field">
@@ -45,5 +42,5 @@
                 <input class="button is-link is-light" type="submit" name="cancel" value="Cancel">
             </div>
         </form>
-    </section>
+    </div>
 </div>
