@@ -16,6 +16,10 @@ class ApplicationController < Sinatra::Base
     register Sinatra::Flash
   end
 
+  after do
+    ActiveRecord::Base.clear_active_connections!
+  end 
+  
   # root route - welcome/home page
   get "/" do
     erb :index
