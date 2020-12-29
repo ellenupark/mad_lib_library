@@ -36,3 +36,6 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/ellenu
 
 ## License
 The app is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Further Information
+[Personal Website](https://ellenupark.github.io) | [LinkedIn](http://www.linkedin.com/in/ellenupark) | [Blog](https://ellen-park.medium.com/)
