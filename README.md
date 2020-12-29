@@ -1,5 +1,11 @@
 # Mad Lib Library - Sinatra App
 
+## Project Demo
+
+[mad-lib-library.herokuapp.com](https://mad-lib-library.herokuapp.com/) | [Summary Video](https://www.youtube.com/watch?v=G8yLC63dcd0)
+
+## Description
+
 A web application designed for users to complete and share mad lib stories.
 * Users sign up to create an account.
 * Once logged in to the app, users can create, edit, and delete their mad libs and view other users mad libs.
