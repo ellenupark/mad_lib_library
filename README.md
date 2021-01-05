@@ -6,6 +6,8 @@
 
 ## Description
 
+<img src="./public/images/madlibimage.png" width="600">
+
 A web application designed for users to complete and share mad lib stories.
 * Users sign up to create an account.
 * Once logged in to the app, users can create, edit, and delete their mad libs and view other users mad libs.
